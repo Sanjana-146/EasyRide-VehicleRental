@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehicle Rental Registration</title>
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    @media (min-width: 640px) {
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body class="p-6" style="background-image: linear-gradient(to right top, #d3c3cc, #d2c2d1, #d0c2d6, #cac2dc, #c2c3e2, #bac6e5, #b2c9e7, #aacce8, #a6d0e5, #a6d4e1, #a9d7dc, #aed9d7);">
+  <div class="max-w-4xl mx-auto bg-slate-50 p-6 shadow-2xl border border-blue-600 rounded-2xl">
+    <h2 class="text-center text-2xl font-bold mb-4">Register Your Vehicle On <a class="text-cyan-500">EasyRide</a> </h2>
+
+    <form id="rentOutForm" enctype="multipart/form-data" method="post" class="form-grid">
+      <!-- Time Slot -->
+      <div>
+        <label for="time-slot" class="block font-medium">Time Slot (Minimum 2 hours):</label>
+        <input type="time" id="startTime"  class="w-full p-2 border border-blue-600 rounded mb-4" required>
+        <input type="time" id="endTime"  class="w-full p-2 border border-blue-600 rounded mb-4" required>
+        <span id="time-error" class="text-red-500 hidden">Please select a time slot of at least 2 hours.</span>
+      </div>
+
+      <!-- Date -->
+      <div>
+        <label for="date" class="block font-medium">Date:</label>
+        <input type="date" id="date" class="w-full p-2 border border-blue-600 rounded mb-4" required>
+      </div>
+
+      <!-- Phone Number -->
+      <div>
+        <label for="phone" class="block font-semibold">Phone Number:</label>
+        <input type="text" id="phoneNo" class="w-full p-2 border border-blue-600 rounded mb-4" maxlength="10" placeholder="Enter 10-digit phone number" required>
+        <span id="phone-error" class="text-red-500 hidden">Please enter a valid 10-digit phone number.</span>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label for="email" class="block font-semibold">Email Address:</label>
+        <input type="email" id="email" class="w-full p-2 border border-blue-600 rounded mb-4" placeholder="Enter email" required>
+      </div>
+
+      <!-- Owner Name -->
+      <div>
+        <label for="ownerName" class="block font-semibold">Owner Name:</label>
+        <input type="text" id="ownerName" class="w-full p-2 border border-blue-600 rounded mb-4" placeholder="Enter owner name" required>
+      </div>
+
+      <!-- Vehicle Name -->
+      <div>
+        <label for="vehicleName" class="block font-semibold">Vehicle Name:</label>
+        <input type="text" id="vehicleName" class="w-full p-2 border border-blue-600 rounded mb-4" placeholder="Enter vehicle name" required>
+      </div>
+
+      <!-- Vehicle number plate -->
+      <div>
+        <label for="vehicleNumberPlate" class="block font-semibold">Vehicle Number Plate:</label>
+        <input type="text" id="vehicleNumberPlate" class="w-full p-2 border border-blue-600 rounded mb-4" placeholder="Enter vehicle number" required>
+      </div>
+
+      <!-- Vehicle Type -->
+      <div>
+        <label for="vehicleType" class="block font-semibold">Vehicle Type:</label>
+        <select id="vehicleType" class="w-full p-2 border border-blue-600 rounded mb-4" required>
+          <option value="">Select Vehicle Type</option>
+          <option value="bike">Bike</option>
+          <option value="car">Car</option>
+          <option value="scooty">Scooty</option>
+        </select>
+      </div>
+
+      <!-- Fuel Type -->
+      <div>
+        <label for="fuelType" class="block font-semibold">Fuel Type:</label>
+        <select id="fuelType" class="w-full p-2 border border-blue-600 rounded mb-4" required>
+          <option value="petrol">Petrol</option>
+          <option value="diesel" class="hidden">Diesel</option>
+        </select>
+      </div>
+
+      <!-- Vehicle Images -->
+      <div>
+        <label for="vehicleImages" class="block font-semibold">Upload Vehicle Images (5-7):</label>
+        <input type="file" id="vehicleImages" multiple accept="image/*" class="w-full p-2 border border-blue-600 rounded mb-4" required>
+      </div>
+
+      <!-- License Photo -->
+      <div>
+        <label for="license" class="block font-semibold">Upload License Photo:</label>
+        <input type="file" id="license" accept="image/*" class="w-full p-2 border border-blue-600 rounded mb-4" required>
+      </div>
+
+      <!-- Aadhar Photo -->
+      <div>
+        <label for="aadhar" class="block font-semibold">Upload Aadhar Photo:</label>
+        <input type="file" id="aadhar" accept="image/*" class="w-full p-2 border border-blue-600 rounded mb-4" required>
+      </div>
+
+      <!-- Pickup Address -->
+      <div>
+        <label for="pickupAddress" class="block font-semibold">Pickup Address:</label>
+        <textarea id="pickupAddress" class="w-full p-2 border border-blue-600 rounded mb-4" placeholder="Enter pickup address" required></textarea>
+      </div>
+
+      <!-- Area Pin Code -->
+      <div>
+        <label for="areaPinCode" class="block font-semibold">Area Pin Code:</label>
+        <input type="text" id="areaPinCode" class="w-full p-2 border border-blue-600 rounded mb-4" placeholder="Enter area pin code" required>
+      </div>
+
+      <!-- Landmark -->
+      <div>
+        <label for="landmark" class="block font-semibold">Landmark:</label>
+        <input type="text" id="landmark" class="w-full p-2 border border-blue-600 rounded mb-4" placeholder="Enter nearby landmark" required>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="col-span-2 flex justify-center">
+        <button type="submit" class="w-64 bg-[#5cd0f7] shadow-2xl hover:bg-[rgb(66,88,188)] hover:text-white p-2 rounded">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="rent-out-form.js"></script>
+</body>
+</html>
