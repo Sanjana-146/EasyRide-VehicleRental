@@ -1,46 +1,54 @@
 
-// function showSidebar(){
-//     const sidebar = document.querySelector('.sidebar')
-//     sidebar.style.display = 'flex'
-//   }
-//   function hideSidebar(){
-//     const sidebar = document.querySelector('.sidebar')
-//     sidebar.style.display = 'none'
-//   }
-
-// window.location.href = "from.html"
-
-// login.addEventListener('click',function(){
-//   window.location.href = "from.html";
-// })
-// const login = document.getElementById('login-nav')
-
-window.addEventListener('DOMContentLoaded', function () {
-  const loginNav = document.getElementById('login-nav');
-  const logoutBtn = document.getElementById('logout-btn');
-  const loggedInUser = localStorage.getItem('loggedInUser');
-
-  // If user is logged in, show logout button and hide login button
-  if (loggedInUser) {
-      loginNav.style.display = 'none';
-      logoutBtn.style.display = 'block';
-  } else {
-      loginNav.style.display = 'block';
-      logoutBtn.style.display = 'none';
+function showSidebar(){
+    const sidebar = document.querySelector('.sidebar')
+    sidebar.style.display = 'flex'
   }
-});
+  function hideSidebar(){
+    const sidebar = document.querySelector('.sidebar')
+    sidebar.style.display = 'none'
+  }
 
-// Logout function
-document.getElementById('logout-btn').addEventListener('click', function () {
-  // Remove the logged in user from localStorage
-  localStorage.removeItem('loggedInUser');
-  
-  // Optionally, you can also remove other user-related data
-  // localStorage.clear(); // Use this if you want to clear everything from localStorage
+  const loginNav = document.getElementById('login-nav');
+  const userIcon = document.getElementById('user-icon');
+  const userDropdown = document.getElementById('user-dropdown');
+    const myAccount = document.getElementById('my-account');
+    const logoutBtn = document.getElementById('logout-btn');
+    console.log(logoutBtn);
+  const isLoggedIn = localStorage.getItem('isLoggedIn');
+  // const username = localStorage.getItem('username');
 
-  // Reload the page to update the UI
-  window.location.reload();
+  if (isLoggedIn) {
+      if (loginNav) loginNav.style.display = 'none';
+      if (userIcon) {
+          userIcon.classList.remove('hidden');
+          // userIcon.textContent = username ? username.charAt(0).toUpperCase() : 'U'; // Show user initial
+      }
+  } //else {
+  //     if (loginNav) loginNav.style.display = 'block';
+  //     if (userIcon) userIcon.classList.add('hidden');
+  // }
+  userIcon.addEventListener('click' , function() {
+    // e.preventDefault();
+    userDropdown.classList.remove('hidden');
+  })
+ 
+// My Account click handler
+myAccount.addEventListener('click', () => {
+  window.location.href = 'profileSec.html'; // Replace with actual account page
 });
+// Logout click handler
+  logoutBtn.addEventListener('click', () => {
+    console.log("Logout button clicked");
+    localStorage.removeItem('isLoggedIn');
+    userIcon.classList.add('hidden');
+    loginNav.style.display = 'block';
+    userDropdown.classList.add('hidden');
+
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 100);
+  });
+
 ///// about us page 
 document.getElementById('more-info-btn').addEventListener('click', function() {
   window.location.href = 'aboutus.html'; // Replace with your actual More Info page link
